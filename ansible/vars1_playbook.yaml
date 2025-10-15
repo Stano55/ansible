@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  become: true
+  vars_files:
+   - host_vars/my_variables.yaml
+  tasks:
+    - name: Install {{balik}}
+      ansible.builtin.dnf:
+        name: "{{balik}}"
+        state: present

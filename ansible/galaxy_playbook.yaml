@@ -1,0 +1,8 @@
+---
+
+- hosts: dbservers
+  become: true
+  tasks:
+     - name: Instalacia mariadb cez rolu
+       include_role:
+         name: fauust.mariadb

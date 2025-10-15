@@ -1,0 +1,17 @@
+[servers:children]
+webservers
+dbservers
+fileservers
+
+[webservers]
+10.2.20.186
+
+[dbservers]
+10.2.20.3
+
+[fileservers]
+10.2.20.188
+
+[servers:vars]
+premenna=root
+balik=neexistujem

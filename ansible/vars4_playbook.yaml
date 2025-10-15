@@ -1,0 +1,14 @@
+- hosts: dockers
+  tasks:
+    - name: System INFO
+      ansible.builtin.debug:
+        msg: |
+         Pocet jadier: {{ansible_processor_cores}}
+         Celkova velkost RAM: {{ansible_memtotal_mb}}
+         Volna pamat RAM: {{ansible_memfree_mb}}
+         Verzia jadra: {{ansible_kernel}}
+         Uptime: {{ansible_uptime_seconds}}
+         Nazov distribucie: {{ansible_distribution}}
+         Verzia distribucie: {{ansible_distribution_version}}
+         Velkost root LV: {{ansible_mounts[0].size_total}}
+         Volne miesto na root LV: {{ansible_mounts[0].size_available}}

@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+    - name: Install apache2
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+      when: ansible_distribution == "Debian"

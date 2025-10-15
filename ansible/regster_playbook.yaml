@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Prikaz
+      ansible.builtin.shell: df -m | grep root
+      register: vystup
+
+    - name: Zobraz vystup
+      ansible.builtin.debug:
+        msg: "{{vystup}}"

@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+    - name: Create a users with a home directory
+      ansible.builtin.user:
+        name: ansible
+        create_home: yes
+        group: wheel
+
+    - name: Set authorized key for user anisble taken from file
+      ansible.posix.authorized_key:
+        user: ansible
+        state: present
+        key: "{{ lookup('file', 'ansible.pub') }}"

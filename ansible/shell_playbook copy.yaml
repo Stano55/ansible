@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+    - name: Prikaz
+      ansible.builtin.shell: ls -latr /home/student
+      register: vystup
+
+    - name: Zobraz vystup
+      ansible.builtin.debug:
+        msg: "{{vystup}}"

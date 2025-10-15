@@ -1,0 +1,12 @@
+---
+
+- hosts: servers
+  become: true
+  tasks:
+    - name: Copy file with owner and permissions
+      ansible.builtin.copy:
+        src: /home/student/ansible/files/hosts
+        dest: /etc/hosts
+        owner: "{{premenna}}"
+        group: "{{premenna}}"
+        mode: u=rw,g=r,o=r

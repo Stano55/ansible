@@ -1,0 +1,32 @@
+---
+
+- hosts: all
+  become: true
+  vars_prompt:
+    - name: "meno"
+      prompt: "Ako sa vola novy pouzivatel"
+      private: false
+    - name: "shell"
+      prompt: "Shell pre noveho pouzivatela"
+      private: false
+    - name: "uid"
+      prompt: "UID noveho pouzivatela"
+      private: false
+    - name: "heslo"
+      prompt: "Heslo pre noveho pouzivatela"
+      private: true
+      encrypt: "sha512_crypt"
+      confirm: yes
+      salt_size: 7
+    - name: "potvrdenie"
+      prompt: "Potvrdit vytvorenie pouzivatela (Y/N)"
+      private: false
+  tasks:
+    - name: Create a users with a home directory
+      ansible.builtin.user:
+        name: "{{meno}}"
+        shell: "{{shell}}"
+        uid: "{{uid}}"
+        password: "{{heslo}}"
+        create_home: yes
+      when: potvrdenie == "Y" or potvrdenie == "y"
